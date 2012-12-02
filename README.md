@@ -13,7 +13,7 @@ Why Use It?
 
 The Phi-accrual detector provides a configurable, continuous
 'suspicion of failure' measurement for remote systems whose
-availability is indirectly measured by heartbeats or samples.
+availability is indicated by periodic sampling.
 Examples:
 
 * Network servers
