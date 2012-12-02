@@ -1,0 +1,25 @@
+{
+  "name": "phi-accrual-detector",
+  "preferGlobal": "false",
+  "version": "0.0.1",
+  "author": "Matt Weagle <mweagle@gmail.com>",
+  "description": "Port of Akka's AcrrualFailureDetector",
+  "contributors": [{
+    "name": "Matt Weagle",
+    "email": "mweagle@gmail.com"
+  }],
+  "main": "./lib/phi.js",
+  "keywords": ["distributed", "patterns"],
+  "dependencies": {},
+  "analyze": false,
+  "devDependencies": {
+    "underscore": "1.4.2",
+    "mocha": "1.7.0",
+    "d3": "2.10.3",
+    "jshint": "0.9.0"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.8"
+  }
+}

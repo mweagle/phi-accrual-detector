@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = google.visualization.arrayToDataTable([
+          ["Time","φ Value","Threshold","Clamped Infinity"],
+[100,0.120249,8,80],
+[202,0.0000165062,8,80],
+[303,0.267709,8,80],
+[405,0.00900756,8,80],
+[505,6.84962e-7,8,80],
+[607,0.214405,8,80],
+[708,0.00320854,8,80],
+[809,3.4533e-7,8,80],
+[910,0.141813,8,80],
+[1010,0.00101188,8,80],
+[1111,1.68643e-8,8,80],
+[1212,0.0695832,8,80],
+[1314,0.000296646,8,80],
+[1415,6.50252e-9,8,80],
+[1516,0.0554593,8,80],
+[1616,0.000125931,8,80],
+[1716,5.7388e-10,8,80],
+[1817,0.0247067,8,80],
+[1918,0.0000325209,8,80],
+[2018,1.64308e-11,8,80],
+[2119,0.0123417,8,80],
+[2220,0.00000434911,8,80],
+[2320,8.81395e-13,8,80],
+[2421,0.00433805,8,80],
+[2522,8.00464e-7,8,80],
+[2624,0.200996,8,80],
+[2726,0.0055798,8,80],
+[2828,0.00000236532,8,80],
+[2928,7.98318e-13,8,80],
+[3029,0.00556674,8,80]
+        ]);
+
+        // Series options
+        // 0 - phi
+        // 1 - threshold
+        // 2 - infinity
+        var series_options = {
+          0: {
+              color: 'Green',
+              lineWidth: 3
+            },
+          1: {
+            color: 'DarkRed',
+            lineWidth: 1
+          },
+          2: {
+              color: 'Black',
+              lineWidth: 1
+          }
+        };
+
+        // Set chart options
+        var options = {
+                        'title':'reliable-source',
+                         'width': 800,
+                         'height':600,
+                          hAxis: {
+                            title: 'Time (ms)',
+                            titlePosition: 'out',
+                            minValue: -1
+                          },
+                          series: series_options
+                      };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+    <p></p>
+  </body>
+</html>
