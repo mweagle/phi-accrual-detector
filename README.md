@@ -21,8 +21,8 @@ Examples:
 * Out-of-process 'worker' event sources
    * Did that job handler crash?
 
-The suspicion level adjusts with the recorded event history, which makes it
-more resilient to event sources that [sawtooth](./test/charts/degrading-signaler.html)
+The suspicion level adjusts to the recorded inter-event periods, which makes it
+more resilient to event sources that [sawtooth](/test/charts/degrading-source.html)
 into stability.
 
 Usage
