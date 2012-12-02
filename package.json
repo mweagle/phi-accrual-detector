@@ -1,6 +1,6 @@
 {
   "name": "phi-accrual-detector",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Matt Weagle <mweagle@gmail.com>",
   "description": "Port of Akka's AcrrualFailureDetector",
   "contributors": [{
