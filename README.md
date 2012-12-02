@@ -39,7 +39,6 @@ How to Use It
 2. Determine the configuration settings.  The documentation below is largely
 copied from the [Akka source](https://github.com/akka/akka/blob/master/akka-cluster/src/main/scala/akka/cluster/AccrualFailureDetector.scala#L38).
 The specific settings depend on your application.
-
     a. *threshold* : The suspicion level above which the event source
                     is considered to have failed.
     b. *max_sample_size* : The maximum number of samples to store
