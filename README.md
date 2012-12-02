@@ -4,7 +4,7 @@ phi-accrual-detector
 What Is It?
 ===
 
-This is a port of [Akka's Accrual Failure Detector](https://raw.github.com/akka/akka/master/akka-cluster/src/main/scala/akka/cluster/AccrualFailureDetector.scala)
+This is a port of [Akka's Accrual Failure Detector](https://github.com/akka/akka/blob/master/akka-cluster/src/main/scala/akka/cluster/AccrualFailureDetector.scala)
 to Node.JS.  It is an implementation of 'The Phi Accrual Failure Detector'
 by Hayashibara et al. as defined in their [paper](http://ddg.jaist.ac.jp/pub/HDY+04.pdf)
 
