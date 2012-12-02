@@ -21,9 +21,17 @@ Examples:
 * Out-of-process 'worker' event sources
    * Did that job handler crash?
 
+The standard example is a event source that suddenly
+[stops sending events](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/unreliable-source.html).
+
 The suspicion level adjusts to the recorded inter-event periods, which makes it
-more resilient to event sources that [sawtooth](/test/charts/degrading-source.html)
+more resilient to event sources that [sawtooth](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/degrading-source.html)
 into stability.
+
+More examples:
+
+* [Reliable Source](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/reliable-source.html)
+* [Source with Normal Distribution of Events](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/normal-distribution-source.html)
 
 Usage
 ===
