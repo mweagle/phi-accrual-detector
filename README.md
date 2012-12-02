@@ -6,61 +6,61 @@ What Is It?
 
 This is a port of
 [Akka's Accrual Failure Detector](https://github.com/akka/akka/blob/master/akka-cluster/src/main/scala/akka/cluster/AccrualFailureDetector.scala)
-to [Node.js](http://nodejs.org).  It is an implementation of 'The Phi Accrual Failure Detector'
-by Hayashibara et al. as defined in their [paper](http://ddg.jaist.ac.jp/pub/HDY+04.pdf)
+to [Node.js](http://nodejs.org).  It is an implementation of "The Phi Accrual Failure Detector"
+by Hayashibara et al. as defined in their [paper](http://ddg.jaist.ac.jp/pub/HDY+04.pdf).
 
 Why Use It?
 ===
 
-The Phi-accrual detector provides a configurable, continuous
-'suspicion of failure' measurement for remote systems whose
+The phi accrual detector provides a configurable, continuous
+"suspicion of failure" value for remote systems whose
 availability is indicated by periodic sampling.
-Examples:
+The Phi value can help answer questions like:
 
-* Network servers
-   * Is that HTTP server up?
-* Out-of-process 'worker' event sources
-   * Did that job handler crash?
+   * Is some HTTP server up?
+   * Did that out-of-process job handler crash?
 
-The standard example is a event source that suddenly
+The standard example is an event source that suddenly
 [stops sending events](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/unreliable-source.html).
 
-The suspicion level adjusts to the recorded inter-event periods, which makes it
+The suspicion level adjusts to the recorded event intervals, which makes it
 more resilient to event sources that [sawtooth](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/degrading-source.html)
 into stability.
 
 More examples:
 
 * [Reliable Source](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/reliable-source.html)
-* [Source with Normal Distribution of Events](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/normal-distribution-source.html)
+* [Source with Normal Event Frequency Distributionn](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/normal-distribution-source.html)
 
-Usage
+How to Use It
 ===
 
-1. Install it: `npm install phi-accrual-detector`
-2. Determine the configuration settings.  These are largely
+1. Install: `npm install phi-accrual-detector`
+2. Determine the configuration settings.  The documentation below is largely
 copied from the [Akka source](https://github.com/akka/akka/blob/master/akka-cluster/src/main/scala/akka/cluster/AccrualFailureDetector.scala#L38).
-    1. *threshold*: The suspicion level above which the event source
+The specific settings depend on your application.
+
+    a. *threshold* : The suspicion level above which the event source
                     is considered to have failed.
-    2. *max_sample_size* : The maximum number of samples to store
+    b. *max_sample_size* : The maximum number of samples to store
                             for mean and standard deviation calculations
                             of event reports.
-    3. *min_std_deviation* : Minimum standard deviation to use for the
+    c. *min_std_deviation* : Minimum standard deviation for the
                             normal distribution used when calculating phi.
-                            Too low standard deviation might result in
+                            Too low a standard deviation might result in
                             too much sensitivity for sudden, but normal,
-                            deviations in event inter arrival times
-    4. *acceptable_heartbeat_pause* : Duration (ms) corresponding to
+                            deviations in event intervals.
+    d. *acceptable_heartbeat_pause* : Duration (ms) corresponding to the
                                     number of potentially lost/delayed
                                     events that will be accepted before
-                                    considering it to be an anomaly.
-                                    This margin is important to be able to
-                                    survive sudden, occasional, pauses in
+                                    it is considered anomalous.
+                                    This margin is important for surviving
+                                    sudden, occasional, gaps between
                                     event reports.
-    5. *first_heartbeat_estimate* : Bootstrap the event history with intervals
-                                    that corresponds to this duration (ms),
-                                    with a with rather high standard deviation
-                                    (since environment is unknown at the beginning)
+    e. *first_heartbeat_estimate* : Duration (ms) values with which to bootstrap the event
+                                    history.  They are recorded with
+                                    rather high standard deviation
+                                    since the environment is unknown at initialization.
 
 3. Reference it:
 
@@ -84,7 +84,7 @@ copied from the [Akka source](https://github.com/akka/akka/blob/master/akka-clus
      * crosses from below to above the threshold value
      */
     mock_service_detector.on('unavailable', function (phi) {
-      console.log("Rats - the service has foresaken me");
+      console.log("Rats - the service has forsaken me");
     })
     ````
 
@@ -98,9 +98,9 @@ copied from the [Akka source](https://github.com/akka/akka/blob/master/akka-clus
   ````
 
 See the ./test directory for more samples and associated
-graphs to get an idea of Phi measurements.
+graphs to get an idea of phi behavior.
 
-TODO
+To Do
 ===
 
 1. Create HTTP/S service detectors
