@@ -39,27 +39,27 @@ How to Use It
 2. Determine the configuration settings.  The documentation below is largely
 copied from the [Akka source](https://github.com/akka/akka/blob/master/akka-cluster/src/main/scala/akka/cluster/AccrualFailureDetector.scala#L38).
 The specific settings depend on your application.
-    a. *threshold* : The suspicion level above which the event source
-                    is considered to have failed.
-    b. *max_sample_size* : The maximum number of samples to store
-                            for mean and standard deviation calculations
-                            of event reports.
-    c. *min_std_deviation* : Minimum standard deviation for the
-                            normal distribution used when calculating phi.
-                            Too low a standard deviation might result in
-                            too much sensitivity for sudden, but normal,
-                            deviations in event intervals.
-    d. *acceptable_heartbeat_pause* : Duration (ms) corresponding to the
-                                    number of potentially lost/delayed
-                                    events that will be accepted before
-                                    it is considered anomalous.
-                                    This margin is important for surviving
-                                    sudden, occasional, gaps between
-                                    event reports.
-    e. *first_heartbeat_estimate* : Duration (ms) values with which to bootstrap the event
-                                    history.  They are recorded with
-                                    rather high standard deviation
-                                    since the environment is unknown at initialization.
+  a. *threshold* : The suspicion level above which the event source
+                  is considered to have failed.
+  b. *max_sample_size* : The maximum number of samples to store
+                          for mean and standard deviation calculations
+                          of event reports.
+  c. *min_std_deviation* : Minimum standard deviation for the
+                          normal distribution used when calculating phi.
+                          Too low a standard deviation might result in
+                          too much sensitivity for sudden, but normal,
+                          deviations in event intervals.
+  d. *acceptable_heartbeat_pause* : Duration (ms) corresponding to the
+                                  number of potentially lost/delayed
+                                  events that will be accepted before
+                                  it is considered anomalous.
+                                  This margin is important for surviving
+                                  sudden, occasional, gaps between
+                                  event reports.
+  e. *first_heartbeat_estimate* : Duration (ms) values with which to bootstrap the event
+                                  history.  They are recorded with
+                                  rather high standard deviation
+                                  since the environment is unknown at initialization.
 
 3. Reference it:
 
