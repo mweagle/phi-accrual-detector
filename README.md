@@ -57,7 +57,7 @@ copied from the [Akka source](https://github.com/akka/akka/blob/master/akka-clus
 
     ````
     var phi_detector = require('phi-accrual-detector');
-    var mock_service_detector = phi-detector.new_detector(threshold,
+    var mock_service_detector = phi_detector.new_detector(threshold,
                                                         max_sample_size,
                                                         min_std_deviation,
                                                         acceptable_heartbeat_pause,
@@ -89,7 +89,7 @@ copied from the [Akka source](https://github.com/akka/akka/blob/master/akka-clus
   ````
 
 See the ./test directory for more samples and associated
-graphs
+graphs to get an idea of Phi measurements.
 
 TODO
 ===
