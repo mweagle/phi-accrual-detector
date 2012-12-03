@@ -15,7 +15,7 @@ Why Use It?
 The phi accrual detector provides a configurable, continuous
 "suspicion of failure" value for remote systems whose
 availability is indicated by periodic sampling.
-The Phi value can help answer questions like:
+The phi value can help answer questions like:
 
    * Is some HTTP server up?
    * Did that out-of-process job handler crash?
@@ -30,7 +30,7 @@ into stability.
 More examples:
 
 * [Reliable Source](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/reliable-source.html)
-* [Source with Normal Event Frequency Distributionn](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/normal-distribution-source.html)
+* [Source with Normal Event Frequency Distribution](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/normal-distribution-source.html)
 
 How to Use It
 ===
@@ -73,7 +73,7 @@ The specific settings depend on your application.
                                                         optional_name);
     /**
      * The 'available' event is broadcast when the phi value
-     * cross from above to below the threshold value
+     * crosses from above to below the threshold value
      */
     mock_service_detector.on('available', function (phi) {
       console.log("Sweet - the service is available!");
