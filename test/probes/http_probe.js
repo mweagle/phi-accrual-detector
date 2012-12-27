@@ -25,7 +25,8 @@
 // DEALINGS IN THE SOFTWARE
 
 var http_probe = require('../../lib/probes/http_probe');
-var phi = require('../../lib/phi');
+
+var HTTP_SAMPLE_COUNT = 20;
 
 describe('HTTP Sampling Detectors', function() {
   this.timeout(200000);
@@ -53,7 +54,7 @@ describe('HTTP Sampling Detectors', function() {
   // TESTS
   //
   it ('MUST handle URL strings', function(done) {
-    var sample_count = 20;
+    var sample_count = HTTP_SAMPLE_COUNT;
     var probe = http_probe.new_http_service_probe("http://www.google.com",
                                                   80,
                                                   3,
@@ -72,7 +73,7 @@ describe('HTTP Sampling Detectors', function() {
   });
 
   it ('MUST handle HTTP options objects', function(done) {
-    var sample_count = 20;
+    var sample_count = HTTP_SAMPLE_COUNT;
     var http_options = {
       method: 'HEAD',
       hostname: 'www.google.com',
