@@ -26,13 +26,12 @@
 
 var fs = require('fs');
 var path = require('path');
-var assert = require('assert');
 var util = require('util');
-var phi = require('../lib/phi.js');
+var phi = require('../lib/phi');
 var _ = require('underscore');
 var d3 = require('d3');
 
-var CHART_OUTPUT_DIR = path.join(__dirname, 'charts');
+var CHART_OUTPUT_DIR = path.join(__dirname, '.out', 'charts');
 var CHART_TEMPLATE_PATH = path.join(__dirname, 'chart.template.erb');
 /**
 As graphing inifinity is difficult, set an arbitrary
@@ -98,8 +97,21 @@ describe('Phi', function() {
   // SETUP
   //
   before(function() {
+    var output_dir = CHART_OUTPUT_DIR.slice(__dirname.length);
+    var components = output_dir.split(path.sep);
+    _.reduce(components, function (memo, component) {
+      var mkdir = path.join(__dirname, memo, component);
+      console.log("Checking output directory: " + mkdir);
+      if (fs.existsSync(mkdir) || fs.mkdirSync(mkdir))
+      {
+        console.log("Created output directory: " + mkdir);
+      }
+      memo += util.format("%s%s", path.sep, component);
+      return memo;
+    },
+    "");
     // Clean it out...
-    fs.existsSync(CHART_OUTPUT_DIR) || fs.rmdirSync(CHART_OUTPUT_DIR);
+    console.log("Creating test charts in: " + CHART_OUTPUT_DIR);
     // And load up the chart template
     chart_template = _.template(fs.readFileSync(CHART_TEMPLATE_PATH, 'UTF-8'));
   });
@@ -206,7 +218,7 @@ describe('Phi', function() {
       if (sample_count <= 0)
       {
         clearInterval(interval);
-        var error = phi_detector.available ?
+        var error = phi_detector.is_available() ?
                     new Error("Dead source false availability") : null;
         done(error);
       }
@@ -256,4 +268,23 @@ describe('Phi', function() {
     phi_detector = new_test_detector(1, 100, 10, 5, 32, 'degrading-source');
   });
 
+  // Tests that the HTTP sampling detector works
+  it ('MUST support HTTP sampling', function(done) {
+    var sample_count = SAMPLE_SIZE;
+
+
+
+    var interval = setInterval(function () {
+      phi_detector.signal();
+      sample_count--;
+      if (sample_count <= 0)
+      {
+        clearInterval(interval);
+        var error = phi_detector.unavailable ?
+                    new Error("Reliable source false unavailability") : null;
+        done(error);
+      }
+    }, 60);
+    phi_detector = new_test_detector(8, 100, 10, 2, 60, 'reliable-source');
+  });
 });
