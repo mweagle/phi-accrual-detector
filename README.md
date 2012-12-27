@@ -124,4 +124,4 @@ wrappers for service classes.  There are two types available:
     * Similar to the HTTP Probe, but accepts a `function():Boolean` synchronous method
       that is periodically called to determine if a service is responding
 
-You can also build your own probe using the [sampling_detector.new_sampling_detector](https://github.com/mweagle/phi-accrual-detector/blob/master/lib/detector/sampling_detector.js#L224)
+You can also build your own probe using the [sampling_detector.new_sampling_detector](https://github.com/mweagle/phi-accrual-detector/blob/master/lib/detector/sampling_detector.js#L185)
