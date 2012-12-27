@@ -21,16 +21,16 @@ The phi value can help answer questions like:
    * Did that out-of-process job handler crash?
 
 The standard example is an event source that suddenly
-[stops sending events](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/unreliable-source.html).
+[stops sending events](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/.out/charts/unreliable-source.html).
 
 The suspicion level adjusts to the recorded event intervals, which makes it
-more resilient to event sources that [sawtooth](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/degrading-source.html)
+more resilient to event sources that [sawtooth](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/.out/charts/degrading-source.html)
 into stability.
 
 More examples:
 
-* [Reliable Source](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/reliable-source.html)
-* [Source with Normal Event Frequency Distribution](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/charts/normal-distribution-source.html)
+* [Reliable Source](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/.out/charts/reliable-source.html)
+* [Source with Normal Event Frequency Distribution](http://htmlpreview.github.com/?https://github.com/mweagle/phi-accrual-detector/blob/master/test/.out/charts/normal-distribution-source.html)
 
 How to Use It
 ===
@@ -99,8 +99,29 @@ The specific settings depend on your application.
 See the ./test directory for more samples and associated
 graphs to get an idea of phi behavior.
 
-To Do
+Probes
 ===
 
-1. Create HTTP/S service detectors
+Probes are layered on top of the phi accrual detector and provide domain-specific
+wrappers for service classes.  There are two types available:
+  * HTTP Probe:
 
+```
+    var probe = http_probe.new_http_service_probe("http://www.google.com" /* url string or options object */,
+                                                  80 /* polling frequency_ms */,
+                                                  3 /* phi threshold */,
+                                                  10 /* max sample history */,
+                                                  20 /* min std deviation_ms */);
+    probe.on('available', function (phi) {
+      console.log('Ho-hum');
+    });
+    probe.on('unavailable', function (phi) {
+      console.log('First time for everything');
+    });
+
+```
+  * Synchronous Probe:
+    ** Similar to the HTTP Probe, but accepts a `function():Boolean` synchronous method
+      that is periodically called to determine if a service is responding
+
+You can also build your own probe using the [sampling_detector.new_sampling_detector](lib/detector/sampling_detector.js)
